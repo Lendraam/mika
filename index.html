@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Message</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            background-color: #ffd6e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #message img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .small-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 12px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hari ini Valentine, tapi kok rasanya ada yang kurang ya...</h2>
+        <button onclick="showMessage()">Oh iya...</button>
+        <div id="message" class="hidden">
+            <img src="malu.gif" alt="Malu">
+            <h1>Senyuman kamu! 💕</h1>
+            <button class="small-button" onclick="window.location.href='Acknowledgment.html'">Lanjut</button>
+        </div>
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            document.body.appendChild(heart);
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        setInterval(createHeart, 500);
+        
+        function showMessage() {
+            document.getElementById('message').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

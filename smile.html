@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayuan Playful</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            background-color: #fff5e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        img {
+            width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        p {
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+        .small-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            font-size: 14px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #extra-message {
+            display: none;
+            font-size: 18px;
+            color: #ff6b6b;
+            margin-top: 10px;
+        }
+        .happy-animation {
+            display: none;
+            font-size: 24px;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .love {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: floatUp 2s ease-in-out forwards;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="slide4.png" alt="Puppy Eyes">
+        <p>Kalau belum mau maafin, gapapa...</p>
+        <p>Tapi inget, makin lama kamu kesel, makin lama juga aku jadi kucing terlantar butuh kasih sayang.</p>
+        <button class="small-button" onclick="showExtraMessage()">Maafin 😊</button>
+        <p id="extra-message">Yeay! Sekarang aku kucing bahagia lagi! 😻💕</p>
+        <div id="happy-animation" class="happy-animation">😄🎉</div>
+        <button id="next-button" class="small-button" style="display:none;" onclick="window.location.href='final.html'">Lanjut</button>
+    </div>
+    
+    <script>
+        function showExtraMessage() {
+            document.getElementById('extra-message').style.display = 'block';
+            document.getElementById('happy-animation').style.display = 'block';
+            document.getElementById('next-button').style.display = 'inline-block';
+            createLoveEffect();
+        }
+        
+        function createLoveEffect() {
+            for (let i = 0; i < 10; i++) {
+                let love = document.createElement('div');
+                love.innerHTML = '❤️';
+                love.classList.add('love');
+                love.style.left = Math.random() * 100 + '%';
+                love.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(love);
+                
+                setTimeout(() => {
+                    love.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

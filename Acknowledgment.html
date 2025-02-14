@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            background-color: #ffe6f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        img {
+            width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        p {
+            font-size: 18px;
+            color: #ff4d6d;
+        }
+        .small-button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            font-size: 14px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .teardrop {
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background-color: rgba(0, 0, 255, 0.5);
+            border-radius: 50%;
+            animation: fall 2s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) scaleX(1); opacity: 1; }
+            100% { transform: translateY(100px) scaleX(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="slide2.png" alt="Maaf">
+        <p>Aku tahu kamu lagi kesel sama aku...</p>
+        <p>Dan aku nggak akan pake jurus ‘pura-pura nggak salah’ buat ngeles.</p>
+        <button class="small-button" onclick="window.location.href='makeup.html'">Lanjut</button>
+    </div>
+    <script>
+        function createTear() {
+            const tear = document.createElement('div');
+            tear.classList.add('teardrop');
+            tear.style.left = Math.random() * document.querySelector('.container').clientWidth + 'px';
+            tear.style.top = '-10px';
+            document.querySelector('.container').appendChild(tear);
+            setTimeout(() => tear.remove(), 2000);
+        }
+        setInterval(createTear, 500);
+    </script>
+</body>
+</html>
