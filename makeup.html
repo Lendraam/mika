@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Makeup</title>
+    <title>Rayuan Playful</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
         
         body {
-            background-color: #fff0f5;
+            background-color: #fff5e6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,7 +16,7 @@
             text-align: center;
             font-family: 'Montserrat', sans-serif;
             flex-direction: column;
-            overflow: hidden;
+            position: relative;
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
@@ -24,6 +24,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
+            overflow: hidden;
         }
         img {
             width: 120px;
@@ -33,71 +34,80 @@
         }
         p {
             font-size: 18px;
-            color: #ff4d6d;
+            color: #ff6b6b;
         }
         .small-button {
             margin-top: 15px;
             padding: 8px 15px;
             font-size: 14px;
-            background-color: #ff4d6d;
+            background-color: #ff6b6b;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
         }
-        .hidden {
+        #extra-message {
             display: none;
+            font-size: 18px;
+            color: #ff6b6b;
+            margin-top: 10px;
         }
-        .emoji {
+        .happy-animation {
+            display: none;
             font-size: 24px;
-            animation: plea 1s infinite alternate;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in-out;
         }
-        @keyframes plea {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .heart {
+        .love {
             position: absolute;
-            color: red;
             font-size: 20px;
-            opacity: 1;
+            color: #ff6b6b;
             animation: floatUp 2s ease-in-out forwards;
         }
         @keyframes floatUp {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100px); opacity: 0; }
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-50px); opacity: 0; }
         }
     </style>
-    <script>
-        function showNextMessage() {
-            document.getElementById('nextMessage').classList.remove('hidden');
-            document.getElementById('continueButton').classList.remove('hidden');
-            document.getElementById('barterButton').style.display = 'none';
-            generateHearts();
-        }
-        
-        function generateHearts() {
-            for (let i = 0; i < 10; i++) {
-                let heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.classList.add('heart');
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '50%';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 2000);
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="container">
-        <img src="slide3.jpeg" alt="Flower">
+        <img src="slide3.jpeg" alt="Puppy Eyes">
         <p>Jadi, gimana kalau kita barter?</p>
-        <p>Aku kasih kamu coklat, kamu kasih aku maaf (atau minimal satu senyum kecil)?</p>
-        <button class="small-button" id="barterButton" onclick="showNextMessage()">Mau 😊</button>
-        <p id="nextMessage" class="hidden">Aku janji bakal lebih baik dan nggak bikin kamu kesel lagi <span class="emoji">🥺🙏</span></p>
-        <button class="small-button hidden" id="continueButton" onclick="window.location.href='smile.html'">Lanjut</button>
+        <p>Aku kasih kamu coklat… kamu kasih aku senyum? Deal?</p>
+        <button class="small-button" onclick="showExtraMessage()">Deal 😊</button>
+        <p id="extra-message">Yeay! Sekarang aku bahagia lagi! 😻💕</p>
+        <div id="happy-animation" class="happy-animation">😄🎉</div>
+        <button id="next-button" class="small-button" style="display:none;" onclick="window.location.href='smile.html'">Lanjut</button>
     </div>
+    
+    <script>
+        function showExtraMessage() {
+            document.getElementById('extra-message').style.display = 'block';
+            document.getElementById('happy-animation').style.display = 'block';
+            document.getElementById('next-button').style.display = 'inline-block';
+            createLoveEffect();
+        }
+        
+        function createLoveEffect() {
+            for (let i = 0; i < 10; i++) {
+                let love = document.createElement('div');
+                love.innerHTML = '❤️';
+                love.classList.add('love');
+                love.style.left = Math.random() * 100 + '%';
+                love.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(love);
+                
+                setTimeout(() => {
+                    love.remove();
+                }, 2000);
+            }
+        }
+    </script>
 </body>
 </html>
