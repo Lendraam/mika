@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayuan Playful</title>
+    <title>Makeup</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
         
         body {
-            background-color: #fff5e6;
+            background-color: #fff0f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,6 +16,7 @@
             text-align: center;
             font-family: 'Montserrat', sans-serif;
             flex-direction: column;
+            overflow: hidden;
             position: relative;
         }
         .container {
@@ -24,7 +25,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
-            overflow: hidden;
+            z-index: 2;
         }
         img {
             width: 120px;
@@ -34,80 +35,111 @@
         }
         p {
             font-size: 18px;
-            color: #ff6b6b;
+            color: #ff4d6d;
         }
         .small-button {
             margin-top: 15px;
             padding: 8px 15px;
             font-size: 14px;
-            background-color: #ff6b6b;
+            background-color: #ff4d6d;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
         }
-        #extra-message {
+        .hidden {
             display: none;
-            font-size: 18px;
-            color: #ff6b6b;
-            margin-top: 10px;
         }
-        .happy-animation {
-            display: none;
+        .emoji {
             font-size: 24px;
-            margin-top: 10px;
-            animation: fadeIn 1s ease-in-out;
+            animation: plea 1s infinite alternate;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes plea {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
         }
-        .love {
+        .heart {
             position: absolute;
+            color: red;
             font-size: 20px;
-            color: #ff6b6b;
+            opacity: 1;
             animation: floatUp 2s ease-in-out forwards;
         }
         @keyframes floatUp {
-            from { transform: translateY(0); opacity: 1; }
-            to { transform: translateY(-50px); opacity: 0; }
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        /* Efek Love */
+        .love {
+            position: absolute;
+            font-size: 24px;
+            color: pink;
+            opacity: 1;
+            animation: loveFloat 3s linear infinite;
+        }
+        @keyframes loveFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) scale(1.5);
+                opacity: 0;
+            }
         }
     </style>
+    <script>
+        function showNextMessage() {
+            document.getElementById('nextMessage').classList.remove('hidden');
+            document.getElementById('continueButton').classList.remove('hidden');
+            document.getElementById('barterButton').style.display = 'none';
+            generateHearts();
+            generateLoves();
+        }
+        
+        function generateHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '50%';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+
+        function generateLoves() {
+            for (let i = 0; i < 15; i++) {
+                let love = document.createElement('div');
+                love.innerHTML = '💖';
+                love.classList.add('love');
+                love.style.left = Math.random() * 100 + 'vw';
+                love.style.bottom = '0px';
+                document.body.appendChild(love);
+                setTimeout(() => love.remove(), 3000);
+            }
+        }
+
+        function showFinalMessage() {
+            document.getElementById('finalMessage').classList.remove('hidden');
+            document.getElementById('continueButton').style.display = 'none';
+            setTimeout(() => {
+                window.location.href = 'final.html';
+            }, 2000);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <img src="slide4.png" alt="Puppy Eyes">
-        <p>Jadi, gimana kalau kita barter?</p>
-        <p>Aku kasih kamu coklat… kamu kasih aku senyum? Deal?</p>
-        <button class="small-button" onclick="showExtraMessage()">Deal 😊</button>
-        <p id="extra-message">Yeay! Sekarang aku bahagia lagi! 😻💕</p>
-        <div id="happy-animation" class="happy-animation">😄🎉</div>
-        <button id="next-button" class="small-button" style="display:none;" onclick="window.location.href='final.html'">Lanjut</button>
+        <img src="slide4.png" alt="Flower">
+        <p>Aku suka lihat kamu tersenyum, tahu?</p>
+        <p>Jadi, boleh nggak kalau aku jadi alasan di balik senyum itu lagi? 😊💕</p>
+        <button class="small-button" id="barterButton" onclick="showNextMessage()">Boleh 😘</button>
+        <p id="nextMessage" class="hidden">Yeay! Aku janji bakal lebih perhatian dan bikin kamu bahagia setiap hari! 💖</p>
+        <p id="finalMessage" class="hidden">Akhirnya! Senyum itu balik lagi! 😊💕</p>
+        <button class="small-button hidden" id="continueButton" onclick="showFinalMessage()">Lanjut</button>
     </div>
-    
-    <script>
-        function showExtraMessage() {
-            document.getElementById('extra-message').style.display = 'block';
-            document.getElementById('happy-animation').style.display = 'block';
-            document.getElementById('next-button').style.display = 'inline-block';
-            createLoveEffect();
-        }
-        
-        function createLoveEffect() {
-            for (let i = 0; i < 10; i++) {
-                let love = document.createElement('div');
-                love.innerHTML = '❤️';
-                love.classList.add('love');
-                love.style.left = Math.random() * 100 + '%';
-                love.style.top = Math.random() * 100 + '%';
-                document.body.appendChild(love);
-                
-                setTimeout(() => {
-                    love.remove();
-                }, 2000);
-            }
-        }
-    </script>
 </body>
 </html>
